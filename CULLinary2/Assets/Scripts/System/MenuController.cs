@@ -67,15 +67,16 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    //Pandemic or hard mode
     public void StartNewGame()
     {
         //random
         if (isSaveFilePresent)
         {
-            PlayerPrefs.SetInt("isGoingToUseDefaultMapAfterTutorial", 0);
-            PlayerData playerData = PlayerManager.instance.CreateBlankData();
+            PlayerPrefs.SetInt("isGoingToUseDefaultMapAfterTutorial", 1);
+            PlayerData playerData = PlayerManager.instance.CreateBlankDataHard();
             BiomeData biomeData = new BiomeData();
-            biomeData.SetRandomSeed();
+            //biomeData.SetRandomSeed();
             SaveSystem.SaveData(biomeData);
             SaveSystem.SaveData(playerData);
             PlayerPrefs.SetInt("nextScene", (int)SceneIndexes.MAIN_SCENE);
@@ -83,6 +84,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    //Endemic or easy mode
     public void StartNewDefaultGame()
     {
         if (isSaveFilePresent)

@@ -40,16 +40,14 @@ public class PlayerData
     public float bossTime = 0f;
     public int enemiesCulled = 0;
 
-
-
-    public PlayerData()
+    public PlayerData(bool isHardMode)
     {
         inventory = "";
-        maxHealth = 200f;
-        currentHealth = 200f;
+        maxHealth = 150f;
+        currentHealth = 150f;
         maxStamina = 200f;
         currentStamina = 200f;
-        meleeDamage = 10f;
+        meleeDamage = 8f;
         currentMoney = 90;
         criticalChance = 0;
         evasionChance = 0;
@@ -60,12 +58,62 @@ public class PlayerData
         weaponSkillArray = new int[11] { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 };
         currentWeaponHeld = 0;
         currentSecondaryHeld = 4;
-        campfireRegenerationRate = 0.5f;
+        campfireRegenerationRate = 0.3f;
         healthPill = 0;
         staminaPill = 0;
         potion = 0;
         pfizerShot = 0;
         modernaShot = 0;
+        currentNewspaperIssue = 1;
+        isTruckUnlocked = false;
+        moneyEarned = 90;
+        ordersFulfilled = 0;
+        noOfDeaths = 0;
+        gameTime = 0f;
+        bossTime = 0f;
+        enemiesCulled = 0;
+        isTruckTutorialDone = false;
+        unlockedMonsters = new MonsterName[3] { MonsterName.Bread, MonsterName.DaddyPotato, MonsterName.Potato };
+        monsterSavedDatas = new MonsterSavedData[12] {
+            new MonsterSavedData(MonsterName.Bread, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.Potato, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.DaddyPotato, PopulationLevel.Rare),
+            new MonsterSavedData(MonsterName.Corn, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.DaddyCorn, PopulationLevel.Rare),
+            new MonsterSavedData(MonsterName.Eggplant, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.DaddyEggplant, PopulationLevel.Rare),
+            new MonsterSavedData(MonsterName.Tomato, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.Ham, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.Mushroom, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.Cheese, PopulationLevel.Normal),
+            new MonsterSavedData(MonsterName.Clown, PopulationLevel.Rare)
+        };
+    }
+
+    public PlayerData()
+    {
+        inventory = "";
+        maxHealth = 300f;
+        currentHealth = 300f;
+        maxStamina = 300f;
+        currentStamina = 300f;
+        meleeDamage = 12f;
+        currentMoney = 90;
+        criticalChance = 5;
+        evasionChance = 5;
+        consumables = new int[3] { 0, 0, 0 }; //7,8,9 indices
+        unlockedRecipes = new int[3] { 0, 1, 3 };
+        upgradesArray = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        currentDay = 1;
+        weaponSkillArray = new int[11] { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 };
+        currentWeaponHeld = 0;
+        currentSecondaryHeld = 4;
+        campfireRegenerationRate = 0.5f;
+        healthPill = 2;
+        staminaPill = 2;
+        potion = 2;
+        pfizerShot = 2;
+        modernaShot = 2;
         currentNewspaperIssue = 1;
         isTruckUnlocked = false;
         moneyEarned = 90;

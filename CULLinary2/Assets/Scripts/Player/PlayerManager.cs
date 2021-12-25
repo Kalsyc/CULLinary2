@@ -121,6 +121,13 @@ public class PlayerManager : SingletonGeneric<PlayerManager>
         return playerData;
     }
 
+    public PlayerData CreateBlankDataHard()
+    {
+        playerData = new PlayerData(true);
+        SetupManager();
+        return playerData;
+    }
+
     public void SetupItems()
     {
         unlockedRecipesList.Clear();
