@@ -8,56 +8,21 @@ using TMPro;
 public class GameSettingsController : SingletonGeneric<GameSettingsController>
 {
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
-    [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private TMP_Text currentBgValue;
     [SerializeField] private TMP_Text currentSfxValue;
     [SerializeField] private Slider bgSlider;
     [SerializeField] private Slider sfxSlider;
-    [SerializeField] private Toggle fullscreenToggle;
     private float maxVol = 20f;
     private float minVol = -30f;
 
-    public Resolution[] resolutions;
-
     private void Start()
     {
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            if (!options.Contains(option))
-            {
-                options.Add(option);
-            }
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-
-        }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        SetResolution(currentResolutionIndex);
-        resolutionDropdown.RefreshShownValue();
         audioMixer.GetFloat("BG_Vol", out float bgFloat);
         SetBGVolume(bgFloat);
         bgSlider.value = bgFloat;
         audioMixer.GetFloat("SFX_Vol", out float sfxFloat);
         sfxSlider.value = sfxFloat;
         SetSFXVolume(sfxFloat);
-        qualityDropdown.value = QualitySettings.GetQualityLevel();
-        qualityDropdown.RefreshShownValue();
-        fullscreenToggle.isOn = Screen.fullScreen;
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetBGVolume(float volume)
@@ -94,16 +59,6 @@ public class GameSettingsController : SingletonGeneric<GameSettingsController>
         }
         audioMixer.SetFloat("SFX_Vol", volume);
         currentSfxValue.text = Mathf.RoundToInt((volume - minVol) / (maxVol - minVol) * 100).ToString();
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }
-
-    public void SetFullscreen(bool isFullscreen)
-    {
-        Screen.fullScreen = isFullscreen;
     }
 
 }
