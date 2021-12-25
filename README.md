@@ -1,4 +1,4 @@
-# CULLinary2
+# CULLinary2 WebGL Version
 
 Developed by Team Angry Eggplant for NUS CS4350: Game Development Project. Developed with Unity 2020.3.8f1.
 
